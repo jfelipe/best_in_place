@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     "<b>addr => [#{address}]</b>".html_safe
   end
 
+  def custom_value
+    "Hello"
+  end
+
   def markdown_desc
     RDiscount.new(description).to_html.html_safe
   end

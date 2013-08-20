@@ -354,6 +354,17 @@ describe BestInPlace::BestInPlaceHelpers do
         @span.attribute("data-value").value.should == "2"
       end
 
+      context "setting a custom value with the display_as option" do
+        before do
+          nk = Nokogiri::HTML.parse(helper.best_in_place @user, :country, :type => :select, :collection => @countries, :display_as => :custom_value)
+          @span = nk.css("span")
+        end
+
+        it "should include the proper data-value" do
+          @span.text.should == "Hello"
+        end
+      end
+
       context "with an apostrophe in it" do
         before do
           @apostrophe_countries = [[1, "Joe's Country"], [2, "Bob's Country"]]
